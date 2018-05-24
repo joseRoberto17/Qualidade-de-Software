@@ -4,6 +4,11 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
+
 public class Emprestimo {
 	private Livro livro;
 	private Usuario usuario;
@@ -59,5 +64,18 @@ public class Emprestimo {
 			return false;
 		}
 	}
+	
+	public boolean Domingo(String data) {
+		boolean isValida = false;
+		DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/YYYY");
+		if(validaData(data) == true) {
+			DateTime d = fmt.parseDateTime(data);
+			if(d.dayOfWeek().getAsText().equals("Domingo")) {
+				isValida = true;
+			}
+		}
+		return isValida;
+	}
+		
 
 }
